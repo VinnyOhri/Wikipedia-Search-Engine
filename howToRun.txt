@@ -1,0 +1,22 @@
+For index construction :
+
+	1. Compile and run parcerc.java with 2 arguements - wikidump and indexfilename
+		upon successful compilation and execution, multiple index files are created in chunks of 5000 pages
+	2. To merge the indexes, compile and run merge.java to merge to multiple index files(0-9a-z)
+	3. Compile and run secondindex.java to create secondary index files
+	4. Compile and run secondary.java and tertiary.java to create the index for title file
+
+Running the queries:
+
+	1. Compile and run query.java
+	2. to search for a text query just enter the text. top 10 relevant documents are retrieved based on tf-idf scores
+	for example - "sachin tendulkar" (without quotes)
+	for executing field queries:-
+		1. t:title
+		2. b:body
+		3. c:category
+		4. i:infobox
+		5. l:external links
+		6. r:references
+
+	example - "t:sachin b:ecommerc"
