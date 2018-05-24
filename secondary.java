@@ -8,22 +8,16 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
-
 public class secondary {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileInputStream instream = null;
 		PrintWriter outstream = null;
 
 		try {
-			//outstream = new FileInputStream("secondtitle.txt");
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("secondtitle.txt")));
 
-			instream = new FileInputStream("/home/ayush/Desktop/IRE/title_id");
+			instream = new FileInputStream("/home/vinny/Desktop/IRE/title_id");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
