@@ -8,12 +8,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
-
 public class split {
 
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileInputStream instream = null;
@@ -24,7 +21,7 @@ public class split {
 			
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("index"+cnt)));
 
-			instream = new FileInputStream("/home/ayush/Desktop/IRE/merged/merged0");
+			instream = new FileInputStream("/home/vinny/Desktop/IRE/merged/merged0");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +34,6 @@ public class split {
 		try {
 			while((line=in.readLine())!=null)
 			{
-				//String[] data=line.split("-");
 				if(line.charAt(0)!=cnt)
 				{
 					outstream.close();
