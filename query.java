@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 
-
 class scorecompa implements Comparator<Entry<Integer, Double>>{
 	 
     @Override
@@ -26,13 +25,8 @@ class scorecompa implements Comparator<Entry<Integer, Double>>{
 }  
 
 
-
 public class query {
 
-	/**
-	 * @param args
-	 * @throws IOException 
-	 */
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException 
 	{
@@ -86,7 +80,7 @@ public class query {
 						startletter='0';
 					}*/
 					try {
-						fstream=new FileInputStream("/home/ayush/Desktop/IRE/secondary/sindex"+startletter);
+						fstream=new FileInputStream("/home/vinny/Desktop/IRE/secondary/sindex"+startletter);
 						br=new BufferedReader(new InputStreamReader(fstream));
 						}
 					catch (FileNotFoundException e) {
@@ -105,7 +99,7 @@ public class query {
 					//		System.out.println(line);
 							String[] offsets=line.split("-");
 							
-							raf = new RandomAccessFile("/home/ayush/Desktop/IRE/merged/merged"+startletter, "r");
+							raf = new RandomAccessFile("/home/vinny/Desktop/IRE/merged/merged"+startletter, "r");
 							raf.seek(Long.parseLong(offsets[1]));
 							line=raf.readLine();
 							//System.out.println(line);
@@ -242,7 +236,7 @@ public class query {
 							startletter='0';
 						}*/
 						try {
-							fstream=new FileInputStream("/home/ayush/Desktop/IRE/secondary/sindex"+startletter);
+							fstream=new FileInputStream("/home/vinny/Desktop/IRE/secondary/sindex"+startletter);
 							br=new BufferedReader(new InputStreamReader(fstream));
 							}
 						catch (FileNotFoundException e) {
@@ -260,7 +254,7 @@ public class query {
 						{
 							//System.out.println(line);
 							String[] offsets=line.split("-");
-							raf = new RandomAccessFile("/home/ayush/Desktop/IRE/merged/merged"+startletter, "r");
+							raf = new RandomAccessFile("/home/vinny/Desktop/IRE/merged/merged"+startletter, "r");
 							raf.seek(Long.parseLong(offsets[1]));
 							line=raf.readLine();
 							String[] docs=line.split("-");		// docs=123 b1|34 b2t1|
@@ -356,7 +350,7 @@ public class query {
 					//System.out.println(title.size());
 					//System.out.println(title.get(16812));
 					//System.out.println("in : "+in1);
-					raf = new RandomAccessFile("/home/ayush/Desktop/IRE/secondtitle.txt", "r");
+					raf = new RandomAccessFile("/home/vinny/Desktop/IRE/secondtitle.txt", "r");
 					raf.seek(in1);
 					String l;
 					int count=0;
@@ -366,11 +360,8 @@ public class query {
 							break;
 						count++;
 					}
-				//	String[] offsets=l.split("-");
-					//System.out.println(l);
 					raf.close();
-					raf=new RandomAccessFile("/home/ayush/Desktop/IRE/title", "r");
-					//System.out.println(title.get(ts.pollFirst().getKey()));
+					raf=new RandomAccessFile("/home/vinny/Desktop/IRE/title", "r");
 					raf.seek(Integer.parseInt(l));
 					System.out.println(raf.readLine());
 					raf.close();
