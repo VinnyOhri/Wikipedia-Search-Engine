@@ -8,12 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
-
 public class tertiary {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileInputStream instream = null;
@@ -25,7 +20,6 @@ public class tertiary {
 
 			instream = new FileInputStream("/home/ayush/Desktop/IRE/secondtitle.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
