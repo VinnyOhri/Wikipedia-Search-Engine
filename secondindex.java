@@ -11,9 +11,6 @@ import java.nio.charset.Charset;
 
 public class secondindex {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileInputStream instream = null;
@@ -23,7 +20,7 @@ public class secondindex {
 			//outstream = new FileInputStream("secondtitle.txt");
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("sindex9")));
 
-			instream = new FileInputStream("/home/ayush/Desktop/IRE/merged/merged9");
+			instream = new FileInputStream("/home/vinny/Desktop/IRE/merged/merged9");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
