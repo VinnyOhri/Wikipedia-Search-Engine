@@ -2,10 +2,8 @@
 
 import java.io.File;
 import java.io.FileOutputStream;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -24,7 +22,7 @@ public class parserc {
 
 	         //String wikifile=args[0];
 	         //indexfile=args[1];
-		 	 String wikifile="/home/rama/Desktop/20162029/sem3/IRE/project1/wiki-search-small.xml";
+		 	 String wikifile="/home/vinny/Desktop/20162029/sem3/IRE/project1/wiki-search-small.xml";
 	         indexfile="";
 			 File inputFile = new File(wikifile);
 	         SAXParserFactory factory = SAXParserFactory.newInstance();
