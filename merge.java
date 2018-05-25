@@ -10,13 +10,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
-
-
 public class merge {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<FileInputStream> fstream=new ArrayList<FileInputStream>();
@@ -102,20 +97,15 @@ public class merge {
 		for(String t:ts)
 		{
 			value=index.get(t);
-			//System.out.println(t+value.toString());
 			term=t;
 			break;
 		}	
 		ts.remove(term);
-		//System.out.println(value.toString());
 		output=new StringBuilder();
 		if(value.size()==1)
 		{
 			Integer i=value.get(0);
-			//output.append(term+"-");
 			output.append(sb.get(i));
-			//System.out.println(sb.get(i));
-			//sb.remove(i);
 			tempreader=br.get(i);
 			temp=new StringBuilder();
 			if(finished[i])
