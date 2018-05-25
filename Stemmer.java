@@ -1,38 +1,3 @@
-
-/*
-
-   Porter stemmer in Java. The original paper is in
-
-       Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,
-       no. 3, pp 130-137,
-
-   See also http://www.tartarus.org/~martin/PorterStemmer
-
-   History:
-
-   Release 1
-
-   Bug 1 (reported by Gonzalo Parra 16/10/99) fixed as marked below.
-   The words 'aed', 'eed', 'oed' leave k at 'a' for step 3, and b[k-1]
-   is then out outside the bounds of b.
-
-   Release 2
-
-   Similarly,
-
-   Bug 2 (reported by Steve Dyrdahl 22/2/00) fixed as marked below.
-   'ion' by itself leaves j = -1 in the test for 'ion' in step 5, and
-   b[j] is then outside the bounds of b.
-
-   Release 3
-
-   Considerably revised 4/9/00 in the light of many helpful suggestions
-   from Brian Goetz of Quiotix Corporation (brian@quiotix.com).
-
-   Release 4
-
-*/
-
 import java.io.*;
 
 /**
@@ -71,11 +36,6 @@ class Stemmer
    }
 
 
-   /** Adds wLen characters to the word being stemmed contained in a portion
-    * of a char[] array. This is like repeated calls of add(char ch), but
-    * faster.
-    */
-
    public void add(char[] w, int wLen)
    {  if (i+wLen >= b.length)
       {  char[] new_b = new char[i+wLen+INC];
@@ -91,17 +51,8 @@ class Stemmer
     * and getResultLength (which is generally more efficient.)
     */
    public String toString() { return new String(b,0,i_end); }
-
-   /**
-    * Returns the length of the word resulting from the stemming process.
-    */
    public int getResultLength() { return i_end; }
 
-   /**
-    * Returns a reference to a character buffer containing the results of
-    * the stemming process.  You also need to consult getResultLength()
-    * to determine the length of the result.
-    */
    public char[] getResultBuffer() { return b; }
 
    /* cons(i) is true <=> b[i] is a consonant. */
@@ -114,18 +65,7 @@ class Stemmer
       }
    }
 
-   /* m() measures the number of consonant sequences between 0 and j. if c is
-      a consonant sequence and v a vowel sequence, and <..> indicates arbitrary
-      presence,
-
-         <c><v>       gives 0
-         <c>vc<v>     gives 1
-         <c>vcvc<v>   gives 2
-         <c>vcvcvc<v> gives 3
-         ....
-   */
-
-   private final int m()
+  private final int m()
    {  int n = 0;
       int i = 0;
       while(true)
@@ -164,15 +104,6 @@ class Stemmer
       if (b[j] != b[j-1]) return false;
       return cons(j);
    }
-
-   /* cvc(i) is true <=> i-2,i-1,i has the form consonant - vowel - consonant
-      and also if the second c is not w,x or y. this is used when trying to
-      restore an e at the end of a short word. e.g.
-
-         cav(e), lov(e), hop(e), crim(e), but
-         snow, box, tray.
-
-   */
 
    private final boolean cvc(int i)
    {  if (i < 2 || !cons(i) || cons(i-1) || !cons(i-2)) return false;
@@ -226,8 +157,7 @@ class Stemmer
           meetings  ->  meet
 
    */
-
-   private final void step1()
+  private final void step1()
    {  if (b[k] == 's')
       {  if (ends("sses")) k -= 2; else
          if (ends("ies")) setto("i"); else
@@ -252,11 +182,6 @@ class Stemmer
    /* step2() turns terminal y to i when there is another vowel in the stem. */
 
    private final void step2() { if (ends("y") && vowelinstem()) b[k] = 'i'; }
-
-   /* step3() maps double suffices to single ones. so -ization ( = -ize plus
-      -ation) maps to -ize etc. note that the string before the suffix must give
-      m() > 0. */
-
    private final void step3() { if (k == 0) return; /* For Bug 1 */ switch (b[k-1])
    {
        case 'a': if (ends("ational")) { r("ate"); break; }
@@ -359,12 +284,6 @@ class Stemmer
       i_end = k+1; i = 0;
    }
 
-   /** Test program for demonstrating the Stemmer.  It reads text from a
-    * a list of files, stems each word, and writes the result to standard
-    * output. Note that the word stemmed is expected to be in lower case:
-    * forcing lower case must be done outside the Stemmer class.
-    * Usage: Stemmer file-name file-name ...
-    */
    public static void main(String[] args)
    {
       char[] w = new char[501];
@@ -397,12 +316,7 @@ class Stemmer
                        s.stem();
                        {  String u;
 
-                          /* and now, to test toString() : */
                           u = s.toString();
-
-                          /* to test getResultBuffer(), getResultLength() : */
-                          /* u = new String(s.getResultBuffer(), 0, s.getResultLength()); */
-
                           System.out.print(u);
                        }
                        break;
