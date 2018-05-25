@@ -33,10 +33,6 @@ secs.
 
 We have a wikipedia dump of around 60 GB. In that dump we have xml document of wikipedia pages.  Firstly open any wikipedia document and try to see its structure. We have a single xml file which contains millions of pages or documents of wikipedia database. 
 
-
-
-
-
 Its structure is as follows:
 <page>
     <title>--------------------</title>
@@ -62,15 +58,13 @@ DOM is read and write (can insert or delete nodes).
 If the XML content is small, then prefer DOM parser.
 Backward and forward search is possible for searching the tags and evaluation of the information inside the tags. So this gives the ease of navigation.
 Slower at run time.
-SAX
-Event based parser (Sequence of events).
+SAX Event based parser (Sequence of events).
 SAX parses the file as it reads it, i.e. parses node by node.
 No memory constraints as it does not store the XML content in the memory.
 SAX is read only i.e. can’t insert or delete the node.
 Use SAX parser when memory content is large.
 SAX reads the XML file from top to bottom and backward navigation is not possible.
 Faster at run time.
-
 
 In SAX parser ,only one object is created when the parent tag is called that is <XML TAG>. Object buffers are cleared out before new page tag appears. In this way we use same object for whole xml file.
 
@@ -104,21 +98,15 @@ We have buffer for each title tag ,text tag ,id tag.
 
 TITLE PROCESSING
 
-
 Convert everything to Lowercase.
 Now we have to Tokenize the title. We do it using regex “\d+ | [\w]+”. It gives list of tokenized words. Like “sachin.tendulkar-0807@gmail.com” , we get ['sachin', 'tendulkar', '0807', 'gmail', 'com']. Its takes only alphanumeric data. space,’.’,’-’,’@’ are all removed.
 Then we encode every word to ‘utf-8’ encoding.
 Then we remove the stop words. Stop words are ‘is’,’and’,’the’ etc which do not add any importance in our information and their removal also reduces our size of data. StopWords are already present in a file provided by standford. We put these stop words in default dictionary and make every element(key) value as 1 so that when we have to search this default dictionary it returns 0 when that query word is not in stop list while removing stop words.In case of simple dictionary if word is not found it will return KeyError instead of zero.
 Now we do the stemming. Stemming is finding the root word like care for cares,caring etc.If we will not do this then care , cares, caring will be treated as different words which will not make any sense. This reduces our size of data to handle. We have used famous Porter Stemmer.
 
-
 RANKING
-
-
 First, we did the ranking on the basis of term frequency giving different weightage to different fields.It has two drawbacks: first was denominator term which contains the total number of words in a particular document, due to this term even when all the words were unique different documents had different term frequencies  Example:doc1 contains Sachin and doc2 contains Sachin in India .Now if query comes with Sachin both the documents should be equally ranked but due to TF ,doc1 will be ranked higher .This is a wrong inference.So we remove the denominator term in term frequency.
 Second Drawback is related to when there are more than one word in a query.In those cases we need to give high  weightage to word which is less frequent in corpus.This is handled by IDF. Example - if D1<s=5,total=10>, D2<s=5,t=5,total=10>, D3<s=1,t=1,d=10> understand these three in terms of tf alone and tf-idf. When there are multiple words in query ,then for a particular document you need to calculate tf-idf for each word in the query and then add them .After doing this for each document we rank them(explain the bad brute force approach -sunny, first find documents with all words then all words-1,then all word-2). Tf-idf of different words have to be added for a document not multi-plied otherwise it will become zero and many documents will become zero hence no ranking will be done in those cases. So add them. 
-
-
 
 We have 3 functions title processing , text processing, creating index. They are in end tag. After doing title processing and text processing  we call creating index. 
 
