@@ -23,10 +23,7 @@ class scorecompa implements Comparator<Entry<Integer, Double>>{
     	
     }
 }  
-
-
 public class query {
-
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException 
 	{
@@ -51,7 +48,6 @@ public class query {
 			title.put(lineno, Integer.parseInt(line));
 			lineno++;
 		}
-		
 		br.close();
 		//System.out.print(title.get(16812));
 		while(true)
@@ -369,8 +365,3 @@ public class query {
 			}
 		}
 }
-		
-
-	
-
-	
