@@ -76,10 +76,10 @@ Normal index:  document id -> data
 Inverted index:  data -> document id
 A good example of inverted index is the index present at the end of book where we search with respect to words.
 
-My index is in the form of default dictionary where each element is an list. This element will contain information related to that word in a particular document. Relating to every document their will be a list. Hence in index number of rows will be total vocabulary of wikipedia dump and number of columns will be number of documents. It will be very big( around 17 GB ). We can call it as Primary Index. 
+My index is in the form of default dictionary where each element is an list. This element will contain information related to that word in a particular document. Relating to every document there will be a list. Hence in index number of rows will be total vocabulary of wikipedia dump and number of columns will be number of documents. It will be very big( around 17 GB ). We can call it as Primary Index. 
 
 Default Dictionary special property :
-Usually, a Python dictionary throws a KeyError if you try to get an item with a key that is not currently in the dictionary. The defaultdict in contrast will simply create any items that you try to access (provided of course they do not exist yet). To create such a "default" item, it calls the function object that you pass in the constructor (more precisely, it's an arbitrary "callable" object, which includes function and type objects). For the first example, default items are created using int(), which will return the integer object 0. For the second example, default items are created using list(), which returns a new empty list object.
+Usually, a Python dictionary throws a KeyError if you try to get an item with a key that is not currently in the dictionary. The defaultdict in contrast will simply create any items that you try to access (provided of course they do not exist yet). To create such a "default" item, it calls the function object that you pass in the constructor (more precisely, it's an arbitrary "callable" object, which includes function and type objects).For example, default items are created using list(), which returns a new empty list object.
 E.g. ) somedict = {} 
           print(somedict[3])                                 # KeyError 
          
@@ -87,14 +87,7 @@ E.g. ) somedict = {}
          print(someddict[3])                                # print int(), thus 0
 
 In SAX parser nodes are the tags. We parse tag by TAG. Here tags are events. It follows stack like data structure. File handler will be called again and again. It has 3 elements - startElement, characters and endElement.  We have overwrite these 3 functions. 
-
 We are using ‘utf-8’ encoding for title. 
-UTF-8: can represent all characters
-1 byte: Standard ASCII
-2 bytes: Arabic, Hebrew, most European scripts (most notably excluding Georgian)
-3 bytes: BMP
-4 bytes: All Unicode characters
-We have buffer for each title tag ,text tag ,id tag. 
 
 TITLE PROCESSING
 
@@ -105,8 +98,7 @@ Then we remove the stop words. Stop words are ‘is’,’and’,’the’ etc w
 Now we do the stemming. Stemming is finding the root word like care for cares,caring etc.If we will not do this then care , cares, caring will be treated as different words which will not make any sense. This reduces our size of data to handle. We have used famous Porter Stemmer.
 
 RANKING
-First, we did the ranking on the basis of term frequency giving different weightage to different fields.It has two drawbacks: first was denominator term which contains the total number of words in a particular document, due to this term even when all the words were unique different documents had different term frequencies  Example:doc1 contains Sachin and doc2 contains Sachin in India .Now if query comes with Sachin both the documents should be equally ranked but due to TF ,doc1 will be ranked higher .This is a wrong inference.So we remove the denominator term in term frequency.
+First, we did ranking on the basis of term frequency giving different weightage to different fields.It has two drawbacks: first was denominator term which contains the total number of words in a particular document, due to this term even when all the words were unique different documents had different term frequencies  Example:doc1 contains Sachin and doc2 contains Sachin in India .Now if query comes with Sachin both the documents should be equally ranked but due to TF ,doc1 will be ranked higher .This is a wrong inference.So we remove the denominator term in term frequency.
 Second Drawback is related to when there are more than one word in a query.In those cases we need to give high  weightage to word which is less frequent in corpus.This is handled by IDF. Example - if D1<s=5,total=10>, D2<s=5,t=5,total=10>, D3<s=1,t=1,d=10> understand these three in terms of tf alone and tf-idf. When there are multiple words in query ,then for a particular document you need to calculate tf-idf for each word in the query and then add them .After doing this for each document we rank them(explain the bad brute force approach -sunny, first find documents with all words then all words-1,then all word-2). Tf-idf of different words have to be added for a document not multi-plied otherwise it will become zero and many documents will become zero hence no ranking will be done in those cases. So add them. 
-
 We have 3 functions title processing , text processing, creating index. They are in end tag. After doing title processing and text processing  we call creating index. 
 
