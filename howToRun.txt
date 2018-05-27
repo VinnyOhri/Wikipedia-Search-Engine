@@ -1,6 +1,6 @@
 For index construction :
 
-	1. Compile and run parcerc.java with 2 arguements - wikidump and indexfilename
+	1. Compile and run parserc.java with 2 arguements - wikidump and indexfilename
 		upon successful compilation and execution, multiple index files are created in chunks of 5000 pages
 	2. To merge the indexes, compile and run merge.java to merge to multiple index files(0-9a-z)
 	3. Compile and run secondindex.java to create secondary index files
