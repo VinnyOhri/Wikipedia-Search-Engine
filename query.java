@@ -11,8 +11,8 @@ import java.util.Scanner;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 
-class scorecompa implements Comparator<Entry<Integer, Double>>{
-	 
+class scorecompa implements Comparator<Entry<Integer, Double>>
+{ 
     @Override
     public int compare(Entry<Integer, Double> e1,Entry<Integer, Double> e2) {
     	
@@ -37,8 +37,6 @@ public class query {
 		Double idf,score;
 		Integer docid;
 		HashMap<Integer,Integer> title=new HashMap<Integer,Integer>();
-		
-		
 		fstream=new FileInputStream("thirdtitle.txt");
 		RandomAccessFile raf=null;
 		br=new BufferedReader(new InputStreamReader(fstream));
@@ -49,14 +47,12 @@ public class query {
 			lineno++;
 		}
 		br.close();
-		//System.out.print(title.get(16812));
 		while(true)
 		{
 			System.out.print("Enter Search Query : ");
 			@SuppressWarnings("resource")
 			Scanner input=new Scanner(System.in);
 			String qry=input.nextLine();
-		//	System.out.println(qry);
 			int type=qry.indexOf(':');
 			HashMap<Integer,Double> index=new HashMap<Integer,Double>();
 			
@@ -71,10 +67,6 @@ public class query {
 					stm.stem();
 					qryword=stm.toString();
 					startletter=qryword.charAt(0);
-					/*if(startletter>='0' && startletter<='9' )
-					{
-						startletter='0';
-					}*/
 					try {
 						fstream=new FileInputStream("/home/vinny/Desktop/IRE/secondary/sindex"+startletter);
 						br=new BufferedReader(new InputStreamReader(fstream));
@@ -170,12 +162,6 @@ public class query {
 					br.close();
 					raf.close();
 				}
-				/*TreeSet<Entry<Integer,Double>> ts=new TreeSet<Entry<Integer,Double>>(new scorecompa()); 
-				ts.addAll(index.entrySet());
-				for(int i=0;i<10;i++)
-				{
-					System.out.println(title.get(ts.pollFirst().getKey()));
-				}*/
 			}
 			else
 			{
@@ -197,12 +183,11 @@ public class query {
 					{
 						val.add(word[j]);
 					}
-					//String key=new String(prev.);
-						hm.put(String.valueOf(prev),val);
+			     		hm.put(String.valueOf(prev),val);
 					prev=word[j].charAt(0);
 				}
 				ArrayList<String> val=new ArrayList<String>();
-				//String[] word=
+			
 				if(hm.get(String.valueOf(prev))!=null)
 				{
 					val=hm.get(String.valueOf(prev));
@@ -225,12 +210,7 @@ public class query {
 						stm.add(value.toLowerCase().toCharArray(),value.length());
 						stm.stem();
 						value=stm.toString();
-						//System.out.print(value);
 						startletter=value.charAt(0);
-						/*if(startletter>='0' && startletter<='9' )
-						{
-							startletter='0';
-						}*/
 						try {
 							fstream=new FileInputStream("/home/vinny/Desktop/IRE/secondary/sindex"+startletter);
 							br=new BufferedReader(new InputStreamReader(fstream));
@@ -256,10 +236,6 @@ public class query {
 							String[] docs=line.split("-");		// docs=123 b1|34 b2t1|
 							
 							String[] doc=docs[1].toString().split("\\|");	//doc= "123 b1","34 b2t1"
-			//				System.out.println(docs[1]);
-							
-				//			System.out.println(doc[1]);
-							
 							idf=(double) doc.length;
 							idf=Math.log(32600/idf);
 							score=0.0;
@@ -339,9 +315,6 @@ public class query {
 					Integer ind=ts.pollFirst().getKey();
 					Integer tertiary=ind/500+1;
 					Integer offset=ind%500;
-					//System.out.println("docid : "+ind);
-					//System.out.println("tert : "+tertiary);
-					//System.out.println("offset : "+offset);
 					in1=title.get(tertiary);
 					//System.out.println(title.size());
 					//System.out.println(title.get(16812));
