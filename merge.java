@@ -83,15 +83,10 @@ public class merge {
 			
 		indexcnt++;
 	}
-//	System.out.print(index.size());
 	TreeSet<String> ts= new TreeSet<String>(index.keySet());
 	StringBuilder output=null;
-	//cnt=2;
 	while(cnt>0)
 	{
-		
-		//System.out.println(index.size());
-		//cnt--;
 		ArrayList<Integer> value=new ArrayList<Integer>();
 		String term=new String();
 		for(String t:ts)
@@ -119,13 +114,13 @@ public class merge {
 					
 					String[] keyword=Line.split("-");
 					if(index.get(keyword[0])==null)
-						{
+					{
 							
-							ArrayList<Integer> val=new ArrayList<Integer>();
-							val.add(i);
-							index.put(keyword[0],val);
-							ts.add(keyword[0]);
-						}
+						ArrayList<Integer> val=new ArrayList<Integer>();
+						val.add(i);
+						index.put(keyword[0],val);
+						ts.add(keyword[0]);
+					}
 					else
 					{
 						ArrayList<Integer> val=new ArrayList<Integer>();
@@ -133,7 +128,6 @@ public class merge {
 						val.add(i);
 						index.put(keyword[0], val);
 						ts.add(keyword[0]);
-
 					}
 					
 				}
@@ -151,13 +145,10 @@ public class merge {
 		else
 		{
 			output.append(term+"-");
-			//System.out.print(term+"-");
 			for(Integer a:value)
 			{
 				String[] split=sb.get(a).toString().split("-");
-				//sb.remove(a);
 				output.append(split[1]);
-				//System.out.print(split[1]);
 				tempreader=br.get(a);
 				temp=new StringBuilder();
 				if(finished[a])
@@ -172,14 +163,12 @@ public class merge {
 						
 						String[] keyword=Line.split("-");
 						if(index.get(keyword[0])==null)
-							{
-								
-								ArrayList<Integer> val=new ArrayList<Integer>();
-								val.add(a);
-								index.put(keyword[0],val);
-								ts.add(keyword[0]);
-
-							}
+						{
+							ArrayList<Integer> val=new ArrayList<Integer>();
+							val.add(a);
+							index.put(keyword[0],val);
+							ts.add(keyword[0]);
+						}
 						else
 						{
 							ArrayList<Integer> val=new ArrayList<Integer>();
