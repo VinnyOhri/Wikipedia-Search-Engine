@@ -17,16 +17,13 @@ public class split {
 		PrintWriter outstream = null;
 		char cnt='0';
 		try {
-			//outstream = new FileInputStream("secondtitle.txt");
-			
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("index"+cnt)));
-
 			instream = new FileInputStream("/home/vinny/Desktop/IRE/merged/merged0");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 		BufferedReader in = new BufferedReader(new InputStreamReader(instream));
@@ -43,8 +40,9 @@ public class split {
 				}
 				outstream.write(line+"\n");
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 
