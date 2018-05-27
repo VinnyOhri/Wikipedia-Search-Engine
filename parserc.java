@@ -1,4 +1,3 @@
-//package com.tutorialspoint.xml;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,15 +12,10 @@ public class parserc {
 	 * @param args
 	 */
 	public static String indexfile=null;
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//	try
-			
-			
-		 try {
-
-	         //String wikifile=args[0];
-	         //indexfile=args[1];
+	public static void main(String[] args) 
+	{	
+		 try
+		 {
 		 	 String wikifile="/home/vinny/Desktop/20162029/sem3/IRE/project1/wiki-search-small.xml";
 	         indexfile="";
 			 File inputFile = new File(wikifile);
