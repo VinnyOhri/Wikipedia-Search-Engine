@@ -16,7 +16,6 @@ public class secondindex {
 		PrintWriter outstream = null;
 
 		try {
-			//outstream = new FileInputStream("secondtitle.txt");
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("sindex9")));
 
 			instream = new FileInputStream("/home/vinny/Desktop/IRE/merged/merged9");
@@ -29,7 +28,6 @@ public class secondindex {
 		}
 		BufferedReader in = new BufferedReader(new InputStreamReader(instream,Charset.forName("iso-8859-1")));
 		Integer offset=0;
-		//outstream.write(offset+"\n");
 		String line;
 		try {
 			while((line=in.readLine())!=null)
@@ -37,7 +35,6 @@ public class secondindex {
 				String[] word=line.split("-");
 				outstream.write(word[0]+"-"+offset+"\n");
 				offset=offset+1+line.codePointCount(0,line.length());
-
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
