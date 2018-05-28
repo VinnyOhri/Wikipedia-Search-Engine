@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
 public class secondindex {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileInputStream instream = null;
@@ -19,14 +18,8 @@ public class secondindex {
 			outstream = new PrintWriter(new BufferedWriter(new FileWriter("sindex9")));
 			instream = new FileInputStream("/home/vinny/Desktop/IRE/merged/merged9");
 		} 
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
+		catch (FileNotFoundException e)			{e.printStackTrace();} 
+		catch (IOException e)				{e.printStackTrace();}
 		BufferedReader in = new BufferedReader(new InputStreamReader(instream,Charset.forName("iso-8859-1")));
 		Integer offset=0;
 		String line;
