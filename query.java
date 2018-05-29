@@ -15,12 +15,10 @@ class scorecompa implements Comparator<Entry<Integer, Double>>
 { 
     @Override
     public int compare(Entry<Integer, Double> e1,Entry<Integer, Double> e2) {
-    	
     				if (e1.getValue()<e2.getValue())
     					return 1;			
     				else
-    					return -1;
-    	
+    					return -1;	
     }
 }  
 public class query {
@@ -55,7 +53,6 @@ public class query {
 			String qry=input.nextLine();
 			int type=qry.indexOf(':');
 			HashMap<Integer,Double> index=new HashMap<Integer,Double>();
-			
 			if(type==-1)	// text query
 			{
 				for(String qrywords:qry.split(" "))
@@ -67,10 +64,11 @@ public class query {
 					stm.stem();
 					qryword=stm.toString();
 					startletter=qryword.charAt(0);
-					try {
+					try 
+					{
 						fstream=new FileInputStream("/home/vinny/Desktop/IRE/secondary/sindex"+startletter);
 						br=new BufferedReader(new InputStreamReader(fstream));
-						}
+					}
 					catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -86,32 +84,21 @@ public class query {
 						{
 					//		System.out.println(line);
 							String[] offsets=line.split("-");
-							
 							raf = new RandomAccessFile("/home/vinny/Desktop/IRE/merged/merged"+startletter, "r");
 							raf.seek(Long.parseLong(offsets[1]));
 							line=raf.readLine();
-							//System.out.println(line);
-							
 							String[] docs=line.split("-");		// docs=123 b1|34 b2t1|
 							
 							String[] doc=docs[1].toString().split("\\|");	//doc= "123 b1","34 b2t1"
-						//	System.out.println(docs[0]);
-							
-				//			System.out.println(doc[1]);
-							
 							idf=(double) doc.length;
 							idf=Math.log(32600/idf);
 							score=0.0;
 							for(String docposting:doc)			
 							{
 								if(doc.length<2)
-									continue;
-						//		System.out.println(docposting);
-									
+									continue;	
 								String[] docpost=docposting.split(" ");		//docpost="123","b1"
-								//System.out.println(docpost[1]);
 								docid=Integer.parseInt(docpost[0].toString());
-								
 								String[] value=docpost[1].split("\\P{Digit}");
 								String[] key=docpost[1].split("\\P{Alpha}");
 								int ind=0;
